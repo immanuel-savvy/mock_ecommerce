@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "./modal";
 import Pay_with_voucher_modal from "./pay_with_voucher_modal";
+import Stretch_btn from "./stretch_btn";
 
 class Pay_with_voucher extends React.Component {
   constructor(props) {
@@ -24,13 +25,7 @@ class Pay_with_voucher extends React.Component {
           cupidatat.
         </p>
 
-        <a
-          href="#"
-          onClick={this.toggle_modal}
-          class="btn full-width theme-bg text-white mt-1"
-        >
-          Proceed to payment
-        </a>
+        <Stretch_btn title="Proceed to payment" action={this.toggle_modal} />
 
         <Modal ref={(modal) => (this.modal = modal)}>
           <Pay_with_voucher_modal

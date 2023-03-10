@@ -1,4 +1,7 @@
 import React from "react";
+import Coupon_modal from "./coupon_modal";
+import Modal from "./modal";
+import Stretch_btn from "./stretch_btn";
 
 class Order_summary extends React.Component {
   constructor(props) {
@@ -7,7 +10,11 @@ class Order_summary extends React.Component {
     this.state = {};
   }
 
+  toggle_coupon_modal = () => this.coupon_modal?.toggle();
+
   render() {
+    let { details } = this.props;
+
     return (
       <div class="col-lg-4 col-md-12 col-sm-12">
         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -33,6 +40,16 @@ class Order_summary extends React.Component {
             </ul>
           </div>
         </div>
+
+        <Stretch_btn
+          title="Apply counpon"
+          style={{ marginLeft: 20, marginRight: 20 }}
+          action={this.toggle_coupon_modal}
+        />
+
+        <Modal ref={(coupon_modal) => (this.coupon_modal = coupon_modal)}>
+          <Coupon_modal details={details} toggle={this.toggle_coupon_modal} />
+        </Modal>
       </div>
     );
   }

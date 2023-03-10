@@ -24,7 +24,7 @@ class Payment_modes extends React.Component {
             </Accordion.Header>
             <Accordion.Body>
               {mode === this.modes[0] ? (
-                <Pay_with_voucher />
+                <Pay_with_voucher details={{ value: 1500 }} />
               ) : mode === this.modes[1] ? (
                 <Pay_now />
               ) : (

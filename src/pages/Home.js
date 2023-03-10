@@ -1,6 +1,7 @@
 import React from "react";
 import Banner from "../components/banner";
 import Feature from "../components/feature";
+import Footer from "../components/footer";
 import Listempty from "../components/listempty";
 import Store_loader from "../components/store_loader";
 
@@ -36,6 +37,8 @@ class Home extends React.Component {
             <Store_loader />
           </div>
         )}
+
+        <Footer />
       </>
     );
   }

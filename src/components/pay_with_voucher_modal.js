@@ -2,6 +2,7 @@ import React from "react";
 import { email_regex } from "../assets/js/utils/functions";
 import { post_request } from "../assets/js/utils/services";
 import Loadindicator from "./loadindicator";
+import Powered_by_voucher_africa from "./powered_by_voucherafrica";
 import Purchase_complete from "./purchase_complete";
 
 class Pay_with_voucher_modal extends React.Component {
@@ -63,8 +64,6 @@ class Pay_with_voucher_modal extends React.Component {
       value: Number(value),
       voucher_type: "open_voucher",
     });
-
-    console.log(res);
 
     if (res && res.user) {
       this.setState({ voucher: res.voucher, user: res.user, loading: false });
@@ -177,30 +176,26 @@ class Pay_with_voucher_modal extends React.Component {
 
                 {message ? <p className="text-danger">{message}</p> : null}
 
-                <div class="form-group">
-                  {loading ? (
-                    <Loadindicator />
-                  ) : (
-                    <button
-                      onClick={voucher ? this.proceed_to_payment : this.proceed}
-                      type="submit"
-                      class="btn btn-md full-width theme-bg text-white"
-                    >
-                      {voucher ? "Proceed to Payment" : "Generate OTP"}
-                    </button>
-                  )}
-                </div>
+                {success ? (
+                  <div class="form-group">
+                    {loading ? (
+                      <Loadindicator />
+                    ) : (
+                      <button
+                        onClick={
+                          voucher ? this.proceed_to_payment : this.proceed
+                        }
+                        type="submit"
+                        class="btn btn-md full-width theme-bg text-white"
+                      >
+                        {voucher ? "Proceed to Payment" : "Generate OTP"}
+                      </button>
+                    )}
+                  </div>
+                ) : null}
               </form>
 
-              <div
-                style={{
-                  textAlign: "center",
-                  width: "100%",
-                }}
-              >
-                Powered by Voucher Africa
-                <i class="ti-unlock"></i>
-              </div>
+              <Powered_by_voucher_africa />
             </div>
           </div>
         </div>

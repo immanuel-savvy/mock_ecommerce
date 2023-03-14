@@ -9,12 +9,24 @@ class Checkout extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      details: { value: 1500 },
+    };
   }
+
+  apply_coupon = async (percentage_discount) => {
+    let { value } = this.state.details;
+
+    value = value - value * (percentage_discount / 100);
+
+    this.setState({ details: { value } });
+  };
 
   toggle_login = () => this.login_modal?.toggle();
 
   render() {
+    let { details } = this.state;
+
     return (
       <>
         <Store_header title="Billing Page" page="checkout" />
@@ -39,11 +51,14 @@ class Checkout extends React.Component {
 
             <div class="row frm_submit_block">
               <div class="col-lg-8 col-md-12 col-sm-12">
-                <Billing_form />
+                <Billing_form details={details} />
 
-                <Payment_modes />
+                <Payment_modes details={details} />
               </div>
-              <Order_summary />
+              <Order_summary
+                details={details}
+                apply_coupon={this.apply_coupon}
+              />
             </div>
           </div>
         </section>

@@ -8,7 +8,11 @@ class Purchase_complete extends React.Component {
   }
 
   render() {
-    return <></>;
+    return (
+      <div style={{ textAlign: "center" }}>
+        <b>Your payment has been successful!</b>
+      </div>
+    );
   }
 }
 

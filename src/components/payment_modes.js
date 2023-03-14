@@ -15,6 +15,8 @@ class Payment_modes extends React.Component {
   modes = new Array("pay_with_voucher", "pay_now", "pay_on_delivery");
 
   render() {
+    let { details } = this.props;
+
     return (
       <Accordion defaultActiveKey={this.modes[0]}>
         {this.modes.map((mode) => (
@@ -24,7 +26,7 @@ class Payment_modes extends React.Component {
             </Accordion.Header>
             <Accordion.Body>
               {mode === this.modes[0] ? (
-                <Pay_with_voucher details={{ value: 1500 }} />
+                <Pay_with_voucher details={details} />
               ) : mode === this.modes[1] ? (
                 <Pay_now />
               ) : (

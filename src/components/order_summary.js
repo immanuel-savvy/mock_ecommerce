@@ -1,4 +1,5 @@
 import React from "react";
+import { commalise_figures } from "../assets/js/utils/functions";
 import Coupon_modal from "./coupon_modal";
 import Modal from "./modal";
 import Stretch_btn from "./stretch_btn";
@@ -13,7 +14,8 @@ class Order_summary extends React.Component {
   toggle_coupon_modal = () => this.coupon_modal?.toggle();
 
   render() {
-    let { details } = this.props;
+    let { details, apply_coupon } = this.props;
+    let { value } = details;
 
     return (
       <div class="col-lg-4 col-md-12 col-sm-12">
@@ -26,16 +28,13 @@ class Order_summary extends React.Component {
             <h5>Platinum</h5>
             <ul>
               <li>
-                <strong>Total</strong>$319
+                <strong>Products</strong>${commalise_figures(value)}
               </li>
               <li>
-                <strong>Subtotal</strong>$319
+                <strong>VAT</strong>${0}
               </li>
               <li>
-                <strong>Tax</strong>$10
-              </li>
-              <li>
-                <strong>Total</strong>$329
+                <strong>Total</strong>${commalise_figures(value)}
               </li>
             </ul>
           </div>
@@ -48,7 +47,11 @@ class Order_summary extends React.Component {
         />
 
         <Modal ref={(coupon_modal) => (this.coupon_modal = coupon_modal)}>
-          <Coupon_modal details={details} toggle={this.toggle_coupon_modal} />
+          <Coupon_modal
+            apply_coupon={apply_coupon}
+            details={details}
+            toggle={this.toggle_coupon_modal}
+          />
         </Modal>
       </div>
     );

@@ -1,4 +1,5 @@
 import React from "react";
+import { client_domain } from "../assets/js/utils/constants";
 
 class Logo extends React.Component {
   constructor(props) {
@@ -14,9 +15,9 @@ class Logo extends React.Component {
           <div class="row">
             <div class="col-sm-12">
               <div class="logo">
-                <a href="index.html">
-                  <img src={require("../assets/images/logo.png")} />
-                </a>
+                {/* <a href={client_domain}>
+                  <img width="150" src={require("../assets/images/logo.png")} />
+                </a> */}
               </div>
             </div>
           </div>

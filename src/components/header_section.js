@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Dropdown_menu from "./dropdown_menu";
+import { academy } from "../assets/js/utils/constants";
 
 class Header_section extends React.Component {
   constructor(props) {
@@ -10,30 +10,21 @@ class Header_section extends React.Component {
   }
 
   render() {
+    let { value } = this.state;
+    let { user, categories, set_category, search_result } = this.props;
+
     return (
       <div className="header_section">
         <div className="container">
           <div className="containt_main">
-            <div id="mySideNav" className="sidenav">
-              <a href="#" className="closebtn" onClick={this.close_nav}>
-                &times;
-              </a>
-              <a href="index.html">Home</a>
-              <a href="fashion.html">Fashion</a>
-              <a href="electronic.html">Electronic</a>
-              <a href="jewellery.html">Jewellery</a>
-            </div>
-            <span className="toggle_icon" onClick={this.open_nav}>
-              <img src={require("../assets/images/toggle-icon.png")} />
-            </span>
-
             <Dropdown_menu
-              items={new Array("cat1", "cat2", "cat3").map(
-                (cat) =>
-                  new Object({
-                    title: cat,
-                  })
-              )}
+              items={
+                new Array(...(categories || new Array()), {
+                  title: "-- All Categories --",
+                  _id: "any",
+                })
+              }
+              action={set_category}
               button={React.forwardRef(({ onClick }, ref) => {
                 return (
                   <button
@@ -71,18 +62,26 @@ class Header_section extends React.Component {
                 <input
                   type="text"
                   className="form-control"
+                  value={value}
                   placeholder="Search products"
+                  onChange={({ target }) =>
+                    this.setState({ value: target.value })
+                  }
                 />
                 <div className="input-group-append">
                   <button
                     className="btn btn-secondary"
                     type="button"
+                    onClick={() => {
+                      search_result && search_result(value, this.setState);
+                      this.setState({ value: "" });
+                    }}
                     style={{
                       backgroundColor: "#03b97c",
                       borderColor: "#03b97c",
                     }}
                   >
-                    <i className="fa fa-search"></i>
+                    <img src={require("../assets/images/search-icon.png")} />
                   </button>
                 </div>
               </div>
@@ -91,15 +90,22 @@ class Header_section extends React.Component {
               <div className="login_menu">
                 <ul>
                   <li>
-                    <Link to={"/store/cart"}>
+                    <a href={`${academy}/cart?u=${user?._id || ""}`}>
                       <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                       <span className="padding_10">Cart</span>
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <a href="#" onClick={null}>
+                    <a
+                      href={`${academy}/${
+                        user ? `profile?u=${user._id}` : "login?shop"
+                      }`}
+                      onClick={null}
+                    >
                       <i className="fa fa-user" aria-hidden="true"></i>
-                      <span className="padding_10">{"Login"}</span>
+                      <span className="padding_10">
+                        {user ? "Profile" : "Login"}
+                      </span>
                     </a>
                   </li>
                 </ul>

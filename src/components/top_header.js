@@ -1,4 +1,9 @@
 import React from "react";
+import {
+  academy,
+  client_domain,
+  club_domain,
+} from "../assets/js/utils/constants";
 
 class Top_header extends React.Component {
   constructor(props) {
@@ -9,28 +14,42 @@ class Top_header extends React.Component {
 
   render() {
     return (
-      <div class="container">
+      <div class="container" style={{ zIndex: 9999 }}>
         <div class="header_section_top">
           <div class="row">
             <div class="col-sm-12">
-              <div class="custom_menu">
+              <div
+                class="custom_menu"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <a href={client_domain} className="mx-5">
+                  <img width="100" src={require("../assets/images/logo.png")} />
+                </a>
                 <ul>
                   <li>
-                    <a href="#">Best Sellers</a>
+                    <a href={academy}>Acedemy</a>
                   </li>
                   <li>
-                    <a href="#">Gift Ideas</a>
+                    <a href={club_domain}>Club</a>
                   </li>
                   <li>
-                    <a href="#">New Releases</a>
+                    <a href={`${academy}/contact`}>Customer Service</a>
                   </li>
                   <li>
-                    <a href="#">Today's Deals</a>
-                  </li>
-                  <li>
-                    <a href="#">Customer Service</a>
+                    <a href={`${academy}/testimonials`}>Reviews</a>
                   </li>
                 </ul>
+                <div className="mx-5">
+                  <img
+                    width="100"
+                    style={{ visibility: "hidden" }}
+                    src={require("../assets/images/logo.png")}
+                  />
+                </div>
               </div>
             </div>
           </div>

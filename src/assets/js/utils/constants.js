@@ -1,14 +1,18 @@
-const DEV = true;
+const DEV = false;
 
-const hostname = DEV ? "http://localhost" : "https://fintech.giitafrica.com";
+const hostname = DEV ? "http://localhost" : "https://shop.fcfirsttouch.com";
 
 const client_domain = DEV
   ? `${hostname}:3000`
-  : `https://magenta-sprinkles-e1e108.netlify.app`;
+  : `https://shop.fcfirsttouch.com`;
 
-const domain = DEV ? `${hostname}:1445` : `https://fintech.giitafrica.com`;
+const domain = DEV ? `${hostname}:1455` : `https://api.fcfirsttouch.com`;
 
 const default_admin = "adminstrators~123fintech~1234567890123";
+
+const academy = DEV ? `${hostname}:1416` : "https://fcfirsttouch.com";
+
+const club_domain = DEV ? `${hostname}:3000` : `https://club.fcfirsttouch.com`;
 
 const month_index = new Object({
   0: "jan",
@@ -51,10 +55,12 @@ export {
   domain,
   hostname,
   client_domain,
+  club_domain,
   month_index,
   default_admin,
   organisation_name,
   DEV,
   dow_index,
   dow_index_inverse,
+  academy,
 };

@@ -30,7 +30,7 @@ class Dropdown_menu extends React.Component {
   }
 
   render() {
-    let { button, items, style } = this.props;
+    let { button, items, style, action } = this.props;
 
     return (
       <Dropdown style={{ ...style }}>
@@ -43,7 +43,7 @@ class Dropdown_menu extends React.Component {
                   <Dropdown.Item
                     key={index}
                     style={{ ...item.style }}
-                    onClick={item.action}
+                    onClick={item.action || (action && (() => action(item)))}
                   >
                     {to_title(item.title)}
                   </Dropdown.Item>

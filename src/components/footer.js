@@ -1,11 +1,25 @@
 import React from "react";
 import { to_title } from "../assets/js/utils/functions";
 
-const store_navs = new Array(
-  { title: "pending orders" },
-  { title: "notifications" },
-  { title: "customer service" }
-);
+const store_navs = new Array();
+
+const scroll_to_top = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+const save_to_session = (key, value) =>
+  window.sessionStorage.setItem(
+    key,
+    typeof value === "string" ? value : JSON.stringify(value)
+  );
+
+const get_session = (key) => {
+  let value = window.sessionStorage.getItem(key);
+
+  try {
+    value = JSON.parse(value);
+  } catch (e) {}
+
+  return value;
+};
 
 class Footer extends React.Component {
   constructor(props) {
@@ -42,20 +56,20 @@ class Footer extends React.Component {
               <ul>
                 {store_navs.map((nav, index) => (
                   <li key={index}>
-                    <a href="#">{to_title(nav.title)}</a>
+                    <a href={nav.path}>{to_title(nav.title)}</a>
                   </li>
                 ))}
               </ul>
             </div>
             <div class="location_main">
-              Help Line Number : <a href="#">+1 1800 1200 1200</a>
+              Help Line Number : <a href="#">+44 7538 548318</a>
             </div>
           </div>
         </div>
         <div class="copyright_section">
           <div class="container">
             <p class="copyright_text">
-              © {new Date().getFullYear()} All Rights Reserved.
+              © 2018-{new Date().getFullYear()} All Rights Reserved.
             </p>
           </div>
         </div>
@@ -65,4 +79,4 @@ class Footer extends React.Component {
 }
 
 export default Footer;
-export { store_navs };
+export { store_navs, scroll_to_top, get_session, save_to_session };

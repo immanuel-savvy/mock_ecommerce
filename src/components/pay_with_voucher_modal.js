@@ -46,8 +46,6 @@ class Pay_with_voucher_modal extends React.Component {
   proceed = async (e) => {
     e.preventDefault();
 
-    console.log("hello");
-
     let { details } = this.props;
     let { value } = details;
 
@@ -67,7 +65,11 @@ class Pay_with_voucher_modal extends React.Component {
 
     if (res && res.user) {
       this.setState({ voucher: res.voucher, user: res.user, loading: false });
-    } else this.setState({ message: res, loading: false });
+    } else
+      this.setState({
+        message: (res && res.message) || "Cannot use voucher at the moment",
+        loading: false,
+      });
   };
 
   render() {
@@ -176,7 +178,7 @@ class Pay_with_voucher_modal extends React.Component {
 
                 {message ? <p className="text-danger">{message}</p> : null}
 
-                {success ? (
+                {!success ? (
                   <div class="form-group">
                     {loading ? (
                       <Loadindicator />

@@ -15,7 +15,7 @@ class Coupon_modal extends React.Component {
   }
 
   apply_coupon = async (coupon) => {
-    let { email } = this.state;
+    let { email, user } = this.state;
     let { apply_coupon, toggle } = this.props;
     this.setState({ applying: true });
 
@@ -67,7 +67,7 @@ class Coupon_modal extends React.Component {
         message: coupon.message || "Cannot fetch coupon at the moment",
       });
     } else {
-      this.setState({ loading: false });
+      this.setState({ loading: false, user: coupon.coupon.user });
       this.apply_coupon(coupon.coupon);
     }
   };

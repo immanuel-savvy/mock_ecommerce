@@ -20,7 +20,6 @@ class Ecommerce extends React.Component {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
-          <Route path="checkout" element={<Checkout />} />
         </Routes>
       </BrowserRouter>
     );

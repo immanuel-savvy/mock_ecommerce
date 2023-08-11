@@ -10,7 +10,7 @@ class Banner_sliders extends React.Component {
 
   render() {
     return (
-      <div class="banner_section layout_padding">
+      <div class="banner_section layout_padding" data-overlay="8">
         <div class="container">
           <div id="my_slider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -20,11 +20,11 @@ class Banner_sliders extends React.Component {
                     <div className="carousel-item active">
                       <div className="row">
                         <div className="col-sm-12">
-                          <h1 className="banner_taital">
-                            Shop for {arr}
+                          <h4 className="banner_taital">
+                            Score Big with Our Football Shop:
                             <br />
-                            your favorite items
-                          </h1>
+                            Unleash Your Football Passion!
+                          </h4>
                           <div className="buynow_bt">
                             <a href="#">Buy Now</a>
                           </div>

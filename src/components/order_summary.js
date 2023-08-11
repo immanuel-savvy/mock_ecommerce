@@ -41,7 +41,7 @@ class Order_summary extends React.Component {
         </div>
 
         <Stretch_btn
-          title="Apply counpon"
+          title="Apply coupon"
           style={{ marginLeft: 20, marginRight: 20 }}
           action={this.toggle_coupon_modal}
         />
